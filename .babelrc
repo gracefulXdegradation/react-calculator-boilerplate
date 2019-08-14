@@ -1,0 +1,25 @@
+{
+  "presets": [
+    "@babel/preset-env",
+    "@babel/preset-react"
+  ],
+  "plugins": [
+    [
+      "@babel/plugin-proposal-class-properties",
+      {
+        "loose": true
+      }
+    ],
+    "add-module-exports",
+    "@babel/plugin-proposal-object-rest-spread",
+    [
+      "babel-plugin-webpack-alias",
+      {
+        "config": "./webpack.config.js"
+      }
+    ],
+    "lodash",
+    "inline-react-svg",
+    "@babel/plugin-transform-runtime"
+  ]
+}
