@@ -2,10 +2,10 @@ module.exports = {
     verbose: true,
     setupTestFrameworkScriptFile: './enzyme.config.js',
     moduleNameMapper: {
-        '\\.(s?css)$': '<rootDir>/src/testutils/styleMock.js',
+        '\\.(s?css|less)$': '<rootDir>/__mocks__/testutils/styleMock.js',
     },
-    testPathIgnorePatterns: ['<rootDir>/src/testutils/'],
+    testPathIgnorePatterns: ['<rootDir>/__mocks__/testutils/'],
     testEnvironment: 'jest-environment-jsdom-global',
     snapshotSerializers: ['enzyme-to-json/serializer'],
-    coveragePathIgnorePatterns: ['<rootDir>/src/testutils/'],
+    coveragePathIgnorePatterns: ['<rootDir>/__mocks__/testutils/'],
 };
