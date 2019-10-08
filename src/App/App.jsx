@@ -97,8 +97,12 @@ const App = () => {
     });
 
     return (
-        <div>
-            <input type="text" value={formatNumber(screen)} readOnly="true" />
+        <form>
+            <div className="DCMN-logo">
+                <img src="https://dcmn.com/assets/dcmn-logo-redesign-black.svg" alt="DCMN logo" />
+            </div>
+
+            <input type="text" value={formatNumber(screen)} readOnly />
             {_range(10).map(value => (
                 <button
                     type="button"
@@ -114,7 +118,7 @@ const App = () => {
             <button type="button" className="button" onClick={() => setOperation('-')}>-</button>
             <button type="button" className="button" onClick={handleEquals}>=</button>
             <button type="button" className="button" onClick={clear}>AC</button>
-        </div>
+        </form>
     );
 };
 
