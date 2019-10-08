@@ -10,7 +10,7 @@ const operations = {
 const calc = (numA, numB, op) => {
     const result = operations[op](parseFloat(numA), parseFloat(numB));
 
-    return result.toFixed(getMaxDecimalPoints(numA, numB));
+    return result % 1 === 0 ? result : result.toFixed(getMaxDecimalPoints(numA, numB));
 };
 
 const maxInputReached = num => num.replace('.', '').length >= 9;

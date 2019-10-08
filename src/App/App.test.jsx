@@ -1,10 +1,14 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 
 import App from './App';
 
 const getScreen = wrapper => wrapper.find('[data-role="screen"]');
 const clickButton = (wrapper, button) => wrapper.find(`[data-role="button_${button}"]`).simulate('click');
+const pressKey = key => act(() => {
+    document.body.dispatchEvent(new KeyboardEvent('keypress', { key }));
+});
 
 describe('App', () => {
     let consoleSpy;
@@ -87,5 +91,30 @@ describe('App', () => {
         clickButton(wrapper, '8');
         clickButton(wrapper, '9');
         expect(screen.getDOMNode().value).toEqual('12 345.6789');
+    });
+
+    it('trims trailing zeros correctly', () => {
+        const screen = getScreen(wrapper);
+
+        pressKey('.');
+        pressKey('1');
+        pressKey('+');
+        pressKey('1');
+        pressKey('.');
+        pressKey('9');
+        pressKey('=');
+        expect(screen.getDOMNode().value).toEqual('2');
+    });
+
+    it('handles key press correctly', () => {
+        const screen = getScreen(wrapper);
+
+        pressKey('1');
+        pressKey('+');
+        pressKey('1');
+        pressKey('.');
+        pressKey('9');
+        pressKey('=');
+        expect(screen.getDOMNode().value).toEqual('2.9');
     });
 });
