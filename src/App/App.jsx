@@ -102,22 +102,22 @@ const App = () => {
                 <img src="https://dcmn.com/assets/dcmn-logo-redesign-black.svg" alt="DCMN logo" />
             </div>
 
-            <input type="text" value={formatNumber(screen)} readOnly />
+            <input type="text" value={formatNumber(screen)} readOnly data-role="screen" />
             {_range(10).map(value => (
                 <button
                     type="button"
-                    className="button"
-                    key={`button-${value}`}
+                    key={`button_${value}`}
+                    data-role={`button_${value}`}
                     onClick={() => handleNumButton(value)}
                 >
                     {value}
                 </button>
             ))}
-            <button type="button" className="button" onClick={handleDotButton}>.</button>
-            <button type="button" className="button" onClick={() => setOperation('+')}>+</button>
-            <button type="button" className="button" onClick={() => setOperation('-')}>-</button>
-            <button type="button" className="button" onClick={handleEquals}>=</button>
-            <button type="button" className="button" onClick={clear}>AC</button>
+            <button type="button" data-role="button_." onClick={handleDotButton}>.</button>
+            <button type="button" data-role="button_+" onClick={() => setOperation('+')}>+</button>
+            <button type="button" data-role="button_-" onClick={() => setOperation('-')}>-</button>
+            <button type="button" data-role="button_=" onClick={handleEquals}>=</button>
+            <button type="button" data-role="button_ac" onClick={clear}>AC</button>
         </form>
     );
 };
