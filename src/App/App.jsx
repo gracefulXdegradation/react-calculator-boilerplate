@@ -1,28 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import _range from 'lodash/range';
+import { getMaxDecimalPoints, formatNumber } from './utils';
 import './app.scss';
 
 const operations = {
     '+': (a, b) => a + b,
     '-': (a, b) => a - b,
 };
-
-const getDecimalPoints = num => (`${num}`.split('.')[1] || '').length;
-const getMaxDecimalPoints = (numA, numB) => Math.max(getDecimalPoints(numA), getDecimalPoints(numB));
-const execute = (numA, numB, op) => {
+const calc = (numA, numB, op) => {
     const result = operations[op](parseFloat(numA), parseFloat(numB));
 
     return result.toFixed(getMaxDecimalPoints(numA, numB));
-};
-const formatNumber = (num) => {
-    const hasDot = num.includes('.');
-    const [int, dec] = num.split('.');
-    const formattedInt = int.split('').reverse().reduce(
-        (acc, val, i) => acc + (i > 0 && i % 3 === 0 ? ' ' : '') + val, '',
-    ).split('')
-        .reverse()
-        .join('');
-
-    return formattedInt + (hasDot ? `.${dec}` : '');
 };
 
 const maxInputReached = num => num.replace('.', '').length >= 9;
@@ -32,7 +20,7 @@ const App = () => {
     const [memo, setMemo] = useState(null);
     const [op, setOp] = useState(null);
 
-    const pushNumButton = (value) => {
+    const handleNumButton = (value) => {
         if (op && memo === null) {
             setMemo(screen);
             setScreen(`${value}`);
@@ -40,13 +28,13 @@ const App = () => {
             if (maxInputReached(screen)) {
                 return;
             }
-            const newScreen = `${screen}${value}` * 1; // get rid of leading spaces
+            const newScreen = `${screen}${value}` * 1; //  x1 to get rid of a leading zero
 
             setScreen(`${newScreen}`);
         }
     };
 
-    const pushDotButton = () => {
+    const handleDotButton = () => {
         if (maxInputReached(screen)) {
             return;
         }
@@ -59,9 +47,9 @@ const App = () => {
         }
     };
 
-    const pushEquals = () => {
+    const handleEquals = () => {
         if (op) {
-            const result = execute(memo || 0, screen, op);
+            const result = calc(memo || 0, screen, op);
 
             setScreen(`${result}`);
             setMemo(null);
@@ -71,7 +59,7 @@ const App = () => {
 
     const setOperation = (operation) => {
         if (op) {
-            pushEquals();
+            handleEquals();
         }
         setOp(operation);
     };
@@ -82,23 +70,49 @@ const App = () => {
         setOp(null);
     };
 
+    const handleKeyPress = ({ key }) => {
+        if (_range(10).includes(parseInt(key, 10))) {
+            handleNumButton(key);
+        } else if ('+-'.includes(key)) {
+            setOperation(key);
+        } else {
+            switch (key) {
+            case '.':
+                handleDotButton();
+                break;
+            case '=':
+                handleEquals();
+                break;
+            case ' ':
+                clear();
+                break;
+            default:
+            }
+        }
+    };
+
+    useEffect(() => {
+        document.body.addEventListener('keypress', handleKeyPress);
+        return () => document.body.removeEventListener('keypress', handleKeyPress);
+    });
+
     return (
         <div>
-            <div>{formatNumber(screen)}</div>
-            {[0, 1, 2, 3, 4, 5, 6, 7, 8, 9].map(value => (
+            <input type="text" value={formatNumber(screen)} readOnly="true" />
+            {_range(10).map(value => (
                 <button
                     type="button"
                     className="button"
                     key={`button-${value}`}
-                    onClick={() => pushNumButton(value)}
+                    onClick={() => handleNumButton(value)}
                 >
                     {value}
                 </button>
             ))}
-            <button type="button" className="button" onClick={pushDotButton}>.</button>
+            <button type="button" className="button" onClick={handleDotButton}>.</button>
             <button type="button" className="button" onClick={() => setOperation('+')}>+</button>
             <button type="button" className="button" onClick={() => setOperation('-')}>-</button>
-            <button type="button" className="button" onClick={pushEquals}>=</button>
+            <button type="button" className="button" onClick={handleEquals}>=</button>
             <button type="button" className="button" onClick={clear}>AC</button>
         </div>
     );
