@@ -42,8 +42,7 @@ const App = () => {
         if (op && memo === null) {
             setMemo(screen);
             setScreen('0.');
-        }
-        if (!screen.includes('.')) {
+        } else if (!screen.includes('.')) {
             setScreen(`${screen}.`);
         }
     };

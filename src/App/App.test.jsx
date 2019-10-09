@@ -66,6 +66,13 @@ describe('App', () => {
         expect(screen.getDOMNode().value).toEqual('0.1234');
     });
 
+    it('limits number of digits in the input', () => {
+        const screen = getScreen(wrapper);
+
+        clickButtons('123456.78901234567890', wrapper);
+        expect(screen.getDOMNode().value).toEqual('123 456.789');
+    });
+
     it('groups digits in integer part correctly', () => {
         const screen = getScreen(wrapper);
 
@@ -75,6 +82,34 @@ describe('App', () => {
         expect(screen.getDOMNode().value).toEqual('12 345');
         clickButtons('.6789', wrapper);
         expect(screen.getDOMNode().value).toEqual('12 345.6789');
+    });
+
+    it('starts new input after operation button click', () => {
+        const screen = getScreen(wrapper);
+
+        clickButtons('1234+.5678', wrapper);
+        expect(screen.getDOMNode().value).toEqual('0.5678');
+    });
+
+    it('adds correctly', () => {
+        const screen = getScreen(wrapper);
+
+        clickButtons('123.4+567.8=', wrapper);
+        expect(screen.getDOMNode().value).toEqual('691.2');
+    });
+
+    it('subtracts correctly', () => {
+        const screen = getScreen(wrapper);
+
+        clickButtons('123.4-567.8=', wrapper);
+        expect(screen.getDOMNode().value).toEqual('-444.4');
+    });
+
+    it('chains operations correctly', () => {
+        const screen = getScreen(wrapper);
+
+        clickButtons('666-999+777+13-69=', wrapper);
+        expect(screen.getDOMNode().value).toEqual('388');
     });
 
     it('trims trailing zeros correctly: int', () => {
@@ -94,7 +129,7 @@ describe('App', () => {
     it('handles key press correctly', () => {
         const screen = getScreen(wrapper);
 
-        pressKeys('1+1.9=');
-        expect(screen.getDOMNode().value).toEqual('2.9');
+        pressKeys('123.4+56.7-89.0=');
+        expect(screen.getDOMNode().value).toEqual('91.1');
     });
 });
