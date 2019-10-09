@@ -25,4 +25,3 @@ npm run test-watch
 ### TODO
 
 - add E notation support
-- clean the screen when user starts typing new number after pushing '='

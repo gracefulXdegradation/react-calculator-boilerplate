@@ -21,7 +21,10 @@ const App = () => {
     const [op, setOp] = useState(null);
 
     const handleNumButton = (num) => {
-        if (op && memo === null) {
+        if (op === '=') {
+            setOp(null);
+        }
+        if ((op || op === '=') && memo === null) {
             setMemo(screen);
             setScreen(`${num}`);
         } else {
@@ -36,10 +39,13 @@ const App = () => {
     };
 
     const handleDotButton = () => {
+        if (op === '=') {
+            setOp(null);
+        }
         if (maxInputReached(screen)) {
             return;
         }
-        if (op && memo === null) {
+        if ((op || op === '=') && memo === null) {
             setMemo(screen);
             setScreen('0.');
         } else if (!screen.includes('.')) {
@@ -53,7 +59,7 @@ const App = () => {
 
             setScreen(`${result}`);
             setMemo(null);
-            setOp(null);
+            setOp('=');
         }
     };
 

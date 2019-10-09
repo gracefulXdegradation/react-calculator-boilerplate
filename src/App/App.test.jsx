@@ -89,6 +89,8 @@ describe('App', () => {
 
         clickButtons('1234+.5678', wrapper);
         expect(screen.getDOMNode().value).toEqual('0.5678');
+        clickButtons('=45.6', wrapper);
+        expect(screen.getDOMNode().value).toEqual('45.6');
     });
 
     it('adds correctly', () => {
