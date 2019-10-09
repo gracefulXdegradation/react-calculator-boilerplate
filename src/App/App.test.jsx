@@ -112,6 +112,8 @@ describe('App', () => {
 
         clickButtons('666-999+777+13-69=', wrapper);
         expect(screen.getDOMNode().value).toEqual('388');
+        clickButtons('+112=', wrapper);
+        expect(screen.getDOMNode().value).toEqual('500');
     });
 
     it('trims trailing zeros correctly: int', () => {

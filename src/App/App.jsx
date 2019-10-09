@@ -64,7 +64,7 @@ const App = () => {
     };
 
     const setOperation = (operation) => {
-        if (op) {
+        if (op && op !== '=') {
             handleEquals();
         }
         setOp(operation);
