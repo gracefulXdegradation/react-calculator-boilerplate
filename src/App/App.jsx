@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import _range from 'lodash/range';
-import { getMaxDecimalPoints, formatNumber } from './utils';
+import { getMaxDecimalPoints, getDecimalPoints, formatNumber } from './utils';
 import './app.scss';
 
 const operations = {
@@ -10,7 +10,7 @@ const operations = {
 const calc = (numA, numB, op) => {
     const result = operations[op](parseFloat(numA), parseFloat(numB));
 
-    return result % 1 === 0 ? result : result.toFixed(getMaxDecimalPoints(numA, numB));
+    return result.toFixed(getMaxDecimalPoints(numA, numB)) * 1; // cut off trailing zeros
 };
 
 const maxInputReached = num => num.replace('.', '').length >= 9;
@@ -20,15 +20,16 @@ const App = () => {
     const [memo, setMemo] = useState(null);
     const [op, setOp] = useState(null);
 
-    const handleNumButton = (value) => {
+    const handleNumButton = (num) => {
         if (op && memo === null) {
             setMemo(screen);
-            setScreen(`${value}`);
+            setScreen(`${num}`);
         } else {
             if (maxInputReached(screen)) {
                 return;
             }
-            const newScreen = `${screen}${value}` * 1; //  x1 to get rid of a leading zero
+            const newValue = `${screen}${num}`;
+            const newScreen = parseFloat(newValue).toFixed(getDecimalPoints(newValue)); // get rid of a leading zero
 
             setScreen(`${newScreen}`);
         }

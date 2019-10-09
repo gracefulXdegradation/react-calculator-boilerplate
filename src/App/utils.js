@@ -1,4 +1,4 @@
-const getDecimalPoints = num => (`${num}`.split('.')[1] || '').length;
+export const getDecimalPoints = num => (`${num}`.split('.')[1] || '').length;
 
 export const getMaxDecimalPoints = (numA, numB) => Math.max(getDecimalPoints(numA), getDecimalPoints(numB));
 
