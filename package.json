@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "babel-preset-react-app": "^7.0.0",
+    "classnames": "2.2.6",
     "jest-enzyme": "^7.0.2",
-    "react": "^16.5.2",
-    "react-dev-utils": "^5.0.2",
-    "react-dom": "^16.8.6",
+    "prop-types": "15.7.2",
+    "react": "^16.10.2",
+    "react-dev-utils": "^9.1.0",
+    "react-dom": "^16.10.2",
     "resolve": "^1.8.1"
   },
   "devDependencies": {
@@ -47,7 +49,7 @@
     "css-loader": "^1.0.0",
     "dotenv": "^8.0.0",
     "dotenv-webpack": "^1.5.7",
-    "enzyme": "^3.7.0",
+    "enzyme": "^3.10.0",
     "enzyme-adapter-react-16": "^1.14.0",
     "enzyme-to-json": "^3.3.4",
     "eslint": "^5.16.0",

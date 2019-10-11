@@ -4,20 +4,24 @@ This is a DCMN frontend coding challenge boilerplate. Just clone the project, in
 
 ### Install dependencies
 ```
-npm install
+yarn
 ```
 
 ### Run Development Server
 ```
-npm start
+yarn start
 ```
 
 ### Run Tests
 ```
-npm run test
+yarn test
 ```
 
 or
 ```
-npm run test-watch
+yarn test-watch
 ```
+
+### TODO
+
+- do proper formatting of long output, e.g. add E notation support

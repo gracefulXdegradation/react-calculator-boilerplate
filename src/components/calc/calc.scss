@@ -1,0 +1,107 @@
+@import '../../variables.scss';
+
+@keyframes pushed {
+    from, to {
+        transform: scale(1);
+    }
+    50%, 70% {
+        transform: scale(0.8);
+        opacity: .8;
+    }
+  }
+
+.DCMN-logo {
+    width: 100px;
+    position: absolute;
+    top: 20px;
+    z-index: -1;
+}
+
+form {
+    display: inline-block;
+    position: relative;
+}
+
+input {
+    font-family: $font;
+    font-style: italic;
+    font-size: 64px;
+    padding: .25em .5em .125em;
+    text-align: right;
+    background: transparent;
+    border: none;
+    color: $inputColor;
+    outline: none;
+    box-sizing: border-box;
+    width: $keyboardWidth;
+    border-bottom: 1px solid $inputColor;
+}
+
+.keyboard {
+    display: flex;
+    width: $keyboardWidth;
+    flex-wrap: wrap;
+    position: relative;
+    margin-top: 8px;
+}
+
+.numboard {
+    display: flex;
+    width: $buttonWidth * 3;
+    flex-flow: wrap-reverse;
+}
+
+.opsboard {
+    display: flex;
+    flex-direction: column;
+}
+
+.pad {
+    position: absolute;
+    width: $buttonWidth;
+    height: $buttonWidth;
+    z-index: 1;
+    transition: 0.3s ease;
+
+    & > div {
+        width: 100%;
+        height: 100%;
+        background: $backgroundColor;
+    }
+
+    &:before {
+        width: 0;
+        height: 0;
+        border-top: 100px solid $buttonColor;
+        border-right: 100px solid transparent;
+        left: 0;
+        top: 0;
+        position: absolute;
+        transform: skew(1deg, 1deg);
+        z-index: -1;
+        content: '';
+        display: block;
+        transition: 0.5s ease;
+    }
+    &:after {
+        width: 0;
+        height: 0;
+        border-bottom: 100px solid $buttonColor;
+        border-left: 100px solid transparent;
+        right: 0;
+        bottom: 0;
+        position: absolute;
+        transform: skew(1deg, 1deg);
+        z-index: -1;
+        content: '';
+        display: block;
+        transition: 0.5s ease;
+    }
+
+    &.hidden {
+        &:before,
+        &:after {
+            border-width: 0;
+        }
+    }
+}
