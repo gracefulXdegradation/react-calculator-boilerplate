@@ -30,6 +30,7 @@ body {
     width: 100px;
     position: absolute;
     top: 20px;
+    z-index: -1;
 }
 
 .app {
@@ -50,7 +51,7 @@ input {
     font-size: 64px;
     padding: 16px 32px 8px;
     text-align: right;
-    background: #222;
+    background: transparent;
     border: none;
     color: #fac;
     outline: none;
