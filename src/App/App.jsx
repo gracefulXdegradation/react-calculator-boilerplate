@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import _range from 'lodash/range';
 import { getMaxDecimalPoints, getDecimalPoints, formatNumber } from './utils';
+import Button from './components/button';
 import './app.scss';
 
 const operations = {
@@ -77,7 +77,7 @@ const App = () => {
     };
 
     const handleKeyPress = ({ key }) => {
-        if (_range(10).includes(parseInt(key, 10))) {
+        if ('1234567890'.includes(parseInt(key, 10))) {
             handleNumButton(key);
         } else if ('+-'.includes(key)) {
             setOperation(key);
@@ -104,26 +104,30 @@ const App = () => {
 
     return (
         <form>
-            <div className="DCMN-logo">
+            {/* <div className="DCMN-logo">
                 <img src="https://dcmn.com/assets/dcmn-logo-redesign-black.svg" alt="DCMN logo" />
-            </div>
+            </div> */}
 
             <input type="text" value={formatNumber(screen)} readOnly data-role="screen" />
-            {_range(10).map(value => (
-                <button
-                    type="button"
-                    key={`button_${value}`}
-                    data-role={`button_${value}`}
-                    onClick={() => handleNumButton(value)}
-                >
-                    {value}
-                </button>
-            ))}
-            <button type="button" data-role="button_." onClick={handleDotButton}>.</button>
-            <button type="button" data-role="button_+" onClick={() => setOperation('+')}>+</button>
-            <button type="button" data-role="button_-" onClick={() => setOperation('-')}>-</button>
-            <button type="button" data-role="button_=" onClick={handleEquals}>=</button>
-            <button type="button" data-role="button_ac" onClick={clear}>AC</button>
+            <div className="keyboard">
+                <div className="numboard">
+                    {'123456789'.split('').map(value => (
+                        <Button
+                            key={`button_${value}`}
+                            onClick={() => handleNumButton(value)}
+                            caption={`${value}`}
+                        />
+                    ))}
+                </div>
+                <div className="opsboard">
+                    <Button caption="+" onClick={() => setOperation('+')} highlighted={op === '+'} />
+                    <Button caption="-" onClick={() => setOperation('-')} highlighted={op === '-'} />
+                    <Button caption="=" onClick={handleEquals} />
+                </div>
+                <Button caption="." onClick={handleDotButton} />
+                <Button caption="0" onClick={() => handleNumButton(0)} />
+                <Button caption="AC" onClick={clear} className="ac" />
+            </div>
         </form>
     );
 };
