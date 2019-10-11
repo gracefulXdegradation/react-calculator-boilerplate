@@ -18,7 +18,6 @@
         "config": "./webpack.config.js"
       }
     ],
-    "lodash",
     "inline-react-svg",
     "@babel/plugin-transform-runtime"
   ]
