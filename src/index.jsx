@@ -1,9 +1,11 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './app';
+import Calc from './components/calc';
 import './index.scss';
 
 render(
-    <App />,
+    <div className="app">
+        <Calc />
+    </div>,
     document.getElementById('root'),
 );

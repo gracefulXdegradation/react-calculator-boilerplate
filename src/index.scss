@@ -1,3 +1,5 @@
+@import './variables.scss';
+
 @font-face {
     font-family: 'Digital-7';
     src: url('./fonts/digital-7\ \(mono\).ttf')  format('truetype');
@@ -11,4 +13,12 @@
 
 body {
     margin: 0;
+    background: $backgroundColor;
+}
+
+.app {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }

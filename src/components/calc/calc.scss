@@ -1,11 +1,4 @@
-$buttonWidth: 120px;
-$keyboardWidth: $buttonWidth * 4;
-$backgroundColor: #222;
-$inputColor: #fac;
-$buttonColor: #aaa;
-$highlightColor: #aa0;
-$acColor: #a00;
-$font: 'Digital-7', 'Courier New', Courier, monospace;
+@import '../../variables.scss';
 
 @keyframes pushed {
     from, to {
@@ -17,22 +10,11 @@ $font: 'Digital-7', 'Courier New', Courier, monospace;
     }
   }
 
-body {
-    background: $backgroundColor;
-}
-
 .DCMN-logo {
     width: 100px;
     position: absolute;
     top: 20px;
     z-index: -1;
-}
-
-.app {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
 form {
@@ -120,45 +102,6 @@ input {
         &:before,
         &:after {
             border-width: 0;
-        }
-    }
-}
-
-button {
-    display: inline-flex;
-    width: $buttonWidth;
-    height: $buttonWidth;
-    justify-content: center;
-    align-items: center;
-    background: none;
-    border: none;
-    font-family: $font;
-    transition: 0.2s ease;
-    outline: none;
-    position: relative;
-    z-index: 2;
-
-    span {
-        display: block;
-        width: 100%;
-        height: 100%;
-        font-size: 48px;
-        color: $buttonColor;
-        transition: 0.2s ease;
-    }
-
-    &.highlighted span {
-        color: $highlightColor;
-    }
-
-    &:hover {
-        cursor: pointer;
-    }
-
-    &.ac {
-        width: $buttonWidth * 2;
-        span {
-            color: $acColor;
         }
     }
 }

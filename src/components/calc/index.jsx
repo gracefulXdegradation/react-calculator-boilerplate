@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import cn from 'classnames';
 import { getMaxDecimalPoints, getDecimalPoints, formatOutput } from '../../utils';
 import Button from '../button';
+import './calc.scss';
 
 const operations = {
     '+': (a, b) => a + b,
@@ -146,10 +147,8 @@ const Calc = () => {
 
     return (
         <form>
-            <div>
-                <img src="https://dcmn.com/assets/dcmn-logo-redesign-black.svg" className="DCMN-logo" alt="DCMN logo" />
-                <input type="text" value={formatOutput(screen)} readOnly data-role="screen" />
-            </div>
+            <img src="https://dcmn.com/assets/dcmn-logo-redesign-black.svg" className="DCMN-logo" alt="DCMN logo" />
+            <input type="text" value={formatOutput(screen)} readOnly data-role="screen" />
             <div className="keyboard" ref={keyboardRef} onMouseLeave={onKeyboardLeave}>
                 <div className={cn('pad', { hidden: padHidden })} ref={padRef}>
                     <div />
