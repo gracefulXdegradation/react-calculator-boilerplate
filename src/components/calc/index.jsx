@@ -147,7 +147,10 @@ const Calc = () => {
 
     return (
         <form>
-            <input type="text" value={formatOutput(screen)} readOnly data-role="screen" />
+            <div>
+                <img src="https://dcmn.com/assets/dcmn-logo-redesign-black.svg" className="DCMN-logo" alt="DCMN logo" />
+                <input type="text" value={formatOutput(screen)} readOnly data-role="screen" />
+            </div>
             <div className="keyboard" ref={keyboardRef} onMouseLeave={onKeyboardLeave}>
                 <div className={cn('pad', { hidden: padHidden })} ref={padRef}>
                     <div />

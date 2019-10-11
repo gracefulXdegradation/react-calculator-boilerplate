@@ -3,12 +3,19 @@
 exports[`App renders the Calc component and matches snapshot 1`] = `
 <Calc>
   <form>
-    <input
-      data-role="screen"
-      readOnly={true}
-      type="text"
-      value="0"
-    />
+    <div>
+      <img
+        alt="DCMN logo"
+        className="DCMN-logo"
+        src="https://dcmn.com/assets/dcmn-logo-redesign-black.svg"
+      />
+      <input
+        data-role="screen"
+        readOnly={true}
+        type="text"
+        value="0"
+      />
+    </div>
     <div
       className="keyboard"
       onMouseLeave={[Function]}

@@ -28,9 +28,9 @@ describe('App', () => {
         expect(wrapper).toMatchSnapshot();
     });
 
-    // it('renders logo', () => {
-    //     expect(wrapper.find('img')).toHaveLength(1);
-    // });
+    it('renders logo', () => {
+        expect(wrapper.find('img')).toHaveLength(1);
+    });
 
     it('shows no errors on console', () => {
         expect(consoleSpy).not.toHaveBeenCalled();

@@ -27,10 +27,9 @@ body {
 }
 
 .DCMN-logo {
-
-    img {
-        width: 300px;
-    }
+    width: 100px;
+    position: absolute;
+    top: 20px;
 }
 
 .app {
@@ -42,6 +41,7 @@ body {
 
 form {
     display: inline-block;
+    position: relative;
 }
 
 input {
@@ -157,10 +157,6 @@ button {
 
     &:hover {
         cursor: pointer;
-        // span {
-        //     animation-name: pushed;
-        //     animation-duration: 0.4s;
-        // }
     }
 
     &.ac {
