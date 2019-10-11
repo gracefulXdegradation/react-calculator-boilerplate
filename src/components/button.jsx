@@ -7,12 +7,14 @@ const Button = ({
     onClick,
     highlighted,
     className,
+    onHover,
 }) => (
     <button
         type="button"
         data-role={`button_${caption.toLowerCase()}`}
         onClick={onClick}
         className={cn(className, { highlighted })}
+        onMouseEnter={onHover}
     >
         <span>{caption}</span>
     </button>
@@ -23,11 +25,13 @@ Button.propTypes = {
     onClick: PropTypes.func.isRequired,
     highlighted: PropTypes.bool,
     className: PropTypes.string,
+    onHover: PropTypes.func,
 };
 
 Button.defaultProps = {
     highlighted: false,
     className: '',
+    onHover: () => {},
 };
 
 export default Button;

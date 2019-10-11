@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import cn from 'classnames';
 import { getMaxDecimalPoints, getDecimalPoints, formatOutput } from '../../utils';
 import Button from '../button';
 
@@ -18,6 +19,10 @@ const Calc = () => {
     const [screen, setScreen] = useState('0');
     const [memo, setMemo] = useState(null);
     const [op, setOp] = useState(null);
+    const [padHidden, setPadHidden] = useState(true);
+
+    const keyboardRef = React.createRef();
+    const padRef = React.createRef();
 
     const handleNumButton = (num) => {
         if (op === '=') {
@@ -96,32 +101,51 @@ const Calc = () => {
         }
     };
 
+    const onHover = ({ currentTarget }) => {
+        const { top, left, width, height } = currentTarget.getBoundingClientRect();
+        const { top: marginTop, left: marginLeft } = keyboardRef.current.getBoundingClientRect();
+
+        Object.assign(padRef.current.style, {
+            top: `${top - marginTop}px`,
+            left: `${left - marginLeft}px`,
+            width: `${width}px`,
+            height: `${height}px`,
+        });
+        setPadHidden(false);
+    };
+
     useEffect(() => {
         document.body.addEventListener('keypress', handleKeyPress);
         return () => document.body.removeEventListener('keypress', handleKeyPress);
     });
 
+    const onKeyboardLeave = () => setPadHidden(true);
+
     return (
         <form>
             <input type="text" value={formatOutput(screen)} readOnly data-role="screen" />
-            <div className="keyboard">
+            <div className="keyboard" ref={keyboardRef} onMouseLeave={onKeyboardLeave}>
+                <div className={cn('pad', { 'hidden': padHidden })} ref={padRef}>
+                    <div />
+                </div>
                 <div className="numboard">
                     {'123456789'.split('').map(value => (
                         <Button
                             key={`button_${value}`}
                             onClick={() => handleNumButton(value)}
                             caption={`${value}`}
+                            onHover={onHover}
                         />
                     ))}
                 </div>
                 <div className="opsboard">
-                    <Button caption="+" onClick={() => setOperation('+')} highlighted={op === '+'} />
-                    <Button caption="-" onClick={() => setOperation('-')} highlighted={op === '-'} />
-                    <Button caption="=" onClick={handleEquals} />
+                    <Button caption="+" onClick={() => setOperation('+')} onHover={onHover} highlighted={op === '+'} />
+                    <Button caption="-" onClick={() => setOperation('-')} onHover={onHover} highlighted={op === '-'} />
+                    <Button caption="=" onClick={handleEquals} onHover={onHover} />
                 </div>
-                <Button caption="." onClick={handleDotButton} />
-                <Button caption="0" onClick={() => handleNumButton(0)} />
-                <Button caption="AC" onClick={clear} className="ac" />
+                <Button caption="." onClick={handleDotButton} onHover={onHover} />
+                <Button caption="0" onClick={() => handleNumButton(0)} onHover={onHover} />
+                <Button caption="AC" onClick={clear} className="ac" onHover={onHover} />
             </div>
         </form>
     );
