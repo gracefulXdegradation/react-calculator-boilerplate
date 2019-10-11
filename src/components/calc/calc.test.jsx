@@ -84,7 +84,7 @@ describe('App', () => {
         expect(screen.getDOMNode().value).toEqual('12 345.6789');
     });
 
-    it('starts new input after operation button click', () => {
+    it('starts new input after operation button pressed', () => {
         const screen = getScreen(wrapper);
 
         clickButtons('1234+.5678', wrapper);
@@ -128,6 +128,15 @@ describe('App', () => {
 
         clickButtons('.002+1.898=', wrapper);
         expect(screen.getDOMNode().value).toEqual('1.9');
+    });
+
+    it('works correctly after = was pressed', () => {
+        const screen = getScreen(wrapper);
+
+        clickButtons('4+5=', wrapper);
+        expect(screen.getDOMNode().value).toEqual('9');
+        clickButtons('4+5=', wrapper);
+        expect(screen.getDOMNode().value).toEqual('9');
     });
 
     it('handles key press correctly', () => {

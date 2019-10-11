@@ -15,6 +15,12 @@ const calc = (numA, numB, op) => {
 
 const maxInputReached = num => num.replace('.', '').length >= 9;
 
+const animateKeyPress = el => el.animate([{ transform: 'scale(1)' },
+    { transform: 'scale(0.8)', offset: 0.5 },
+    { transform: 'scale(0.8)', offset: 0.7 },
+    { transform: 'scale(1)' }],
+{ duration: 500 });
+
 const Calc = () => {
     const [screen, setScreen] = useState('0');
     const [memo, setMemo] = useState(null);
@@ -28,8 +34,10 @@ const Calc = () => {
         if (op === '=') {
             setOp(null);
         }
-        if ((op || op === '=') && memo === null) {
-            setMemo(screen);
+        if (op && memo === null) {
+            if (op !== '=') {
+                setMemo(screen);
+            }
             setScreen(`${num}`);
         } else {
             if (maxInputReached(screen)) {
@@ -58,7 +66,7 @@ const Calc = () => {
     };
 
     const handleEquals = () => {
-        if (op) {
+        if (op && op !== '=') {
             const result = calc(memo || 0, screen, op);
 
             setScreen(`${result}`);
@@ -81,7 +89,7 @@ const Calc = () => {
     };
 
     const handleKeyPress = ({ key }) => {
-        if ('1234567890'.includes(parseInt(key, 10))) {
+        if ('1234567890'.includes(key)) {
             handleNumButton(key);
         } else if ('+-'.includes(key)) {
             setOperation(key);
@@ -99,10 +107,26 @@ const Calc = () => {
             default:
             }
         }
+
+        const el = document.querySelector(`[data-role="button_${key === ' ' ? 'ac' : key}"]`);
+
+        if (el) {
+            animateKeyPress(el);
+        }
+    };
+
+    const handlePressButton = ({ currentTarget }) => {
+        const role = currentTarget.getAttribute('data-role');
+        const buttonValue = role.split('button_')[1];
+        const key = buttonValue === 'ac' ? ' ' : buttonValue;
+
+        handleKeyPress({ key });
     };
 
     const onHover = ({ currentTarget }) => {
-        const { top, left, width, height } = currentTarget.getBoundingClientRect();
+        const {
+            top, left, width, height,
+        } = currentTarget.getBoundingClientRect();
         const { top: marginTop, left: marginLeft } = keyboardRef.current.getBoundingClientRect();
 
         Object.assign(padRef.current.style, {
@@ -132,20 +156,20 @@ const Calc = () => {
                     {'123456789'.split('').map(value => (
                         <Button
                             key={`button_${value}`}
-                            onClick={() => handleNumButton(value)}
+                            onClick={handlePressButton}
                             caption={`${value}`}
                             onHover={onHover}
                         />
                     ))}
                 </div>
                 <div className="opsboard">
-                    <Button caption="+" onClick={() => setOperation('+')} onHover={onHover} highlighted={op === '+'} />
-                    <Button caption="-" onClick={() => setOperation('-')} onHover={onHover} highlighted={op === '-'} />
-                    <Button caption="=" onClick={handleEquals} onHover={onHover} />
+                    <Button caption="+" onClick={handlePressButton} onHover={onHover} highlighted={op === '+'} />
+                    <Button caption="-" onClick={handlePressButton} onHover={onHover} highlighted={op === '-'} />
+                    <Button caption="=" onClick={handlePressButton} onHover={onHover} />
                 </div>
-                <Button caption="." onClick={handleDotButton} onHover={onHover} />
-                <Button caption="0" onClick={() => handleNumButton(0)} onHover={onHover} />
-                <Button caption="AC" onClick={clear} className="ac" onHover={onHover} />
+                <Button caption="." onClick={handlePressButton} onHover={onHover} />
+                <Button caption="0" onClick={handlePressButton} onHover={onHover} />
+                <Button caption="AC" onClick={handlePressButton} className="ac" onHover={onHover} />
             </div>
         </form>
     );

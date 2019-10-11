@@ -48,14 +48,15 @@ input {
     font-family: 'Digital-7', 'Courier New', Courier, monospace;
     font-style: italic;
     font-size: 64px;
-    padding: 0 32px;
+    padding: 16px 32px 8px;
     text-align: right;
     background: #222;
     border: none;
-    color: #cac;
+    color: #fac;
     outline: none;
     box-sizing: border-box;
     width: $keyboardWidth;
+    border-bottom: 1px solid #fac;
 }
 
 .keyboard {
@@ -63,6 +64,7 @@ input {
     width: $keyboardWidth;
     flex-wrap: wrap;
     position: relative;
+    margin-top: 8px;
 }
 
 .numboard {

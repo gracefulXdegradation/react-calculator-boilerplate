@@ -11,7 +11,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
     />
     <div
       className="keyboard"
+      onMouseLeave={[Function]}
     >
+      <div
+        className="pad hidden"
+      >
+        <div />
+      </div>
       <div
         className="numboard"
       >
@@ -21,11 +27,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           highlighted={false}
           key="button_1"
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_1"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -39,11 +47,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           highlighted={false}
           key="button_2"
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_2"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -57,11 +67,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           highlighted={false}
           key="button_3"
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_3"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -75,11 +87,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           highlighted={false}
           key="button_4"
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_4"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -93,11 +107,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           highlighted={false}
           key="button_5"
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_5"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -111,11 +127,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           highlighted={false}
           key="button_6"
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_6"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -129,11 +147,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           highlighted={false}
           key="button_7"
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_7"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -147,11 +167,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           highlighted={false}
           key="button_8"
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_8"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -165,11 +187,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           highlighted={false}
           key="button_9"
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_9"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -186,11 +210,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           className=""
           highlighted={false}
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_+"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -203,11 +229,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           className=""
           highlighted={false}
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_-"
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -220,11 +248,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
           className=""
           highlighted={false}
           onClick={[Function]}
+          onHover={[Function]}
         >
           <button
             className=""
             data-role="button_="
             onClick={[Function]}
+            onMouseEnter={[Function]}
             type="button"
           >
             <span>
@@ -238,11 +268,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
         className=""
         highlighted={false}
         onClick={[Function]}
+        onHover={[Function]}
       >
         <button
           className=""
           data-role="button_."
           onClick={[Function]}
+          onMouseEnter={[Function]}
           type="button"
         >
           <span>
@@ -255,11 +287,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
         className=""
         highlighted={false}
         onClick={[Function]}
+        onHover={[Function]}
       >
         <button
           className=""
           data-role="button_0"
           onClick={[Function]}
+          onMouseEnter={[Function]}
           type="button"
         >
           <span>
@@ -272,11 +306,13 @@ exports[`App renders the Calc component and matches snapshot 1`] = `
         className="ac"
         highlighted={false}
         onClick={[Function]}
+        onHover={[Function]}
       >
         <button
           className="ac"
           data-role="button_ac"
           onClick={[Function]}
+          onMouseEnter={[Function]}
           type="button"
         >
           <span>
