@@ -1,7 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App renders the App component and matches snapshot 1`] = `
-<App>
+exports[`App renders the Calc component and matches snapshot 1`] = `
+<Calc>
   <form>
     <input
       data-role="screen"
@@ -286,5 +286,5 @@ exports[`App renders the App component and matches snapshot 1`] = `
       </Button>
     </div>
   </form>
-</App>
+</Calc>
 `;

@@ -2,7 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 
-import App from './App';
+import Calc from './index';
 
 const getScreen = wrapper => wrapper.find('[data-role="screen"]');
 const clickButton = (button, wrapper) => wrapper.find(`[data-role="button_${button}"]`).simulate('click');
@@ -17,14 +17,14 @@ describe('App', () => {
     let wrapper;
 
     beforeEach(() => {
-        wrapper = mount(<App />);
+        wrapper = mount(<Calc />);
     });
 
     beforeAll(() => {
         consoleSpy = jest.spyOn(console, 'error');
     });
 
-    it('renders the App component and matches snapshot', () => {
+    it('renders the Calc component and matches snapshot', () => {
         expect(wrapper).toMatchSnapshot();
     });
 

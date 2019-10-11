@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { getMaxDecimalPoints, getDecimalPoints, formatNumber } from './utils';
-import Button from './components/button';
-import './app.scss';
+import { getMaxDecimalPoints, getDecimalPoints, formatOutput } from '../../utils';
+import Button from '../button';
 
 const operations = {
     '+': (a, b) => a + b,
@@ -15,7 +14,7 @@ const calc = (numA, numB, op) => {
 
 const maxInputReached = num => num.replace('.', '').length >= 9;
 
-const App = () => {
+const Calc = () => {
     const [screen, setScreen] = useState('0');
     const [memo, setMemo] = useState(null);
     const [op, setOp] = useState(null);
@@ -104,11 +103,7 @@ const App = () => {
 
     return (
         <form>
-            {/* <div className="DCMN-logo">
-                <img src="https://dcmn.com/assets/dcmn-logo-redesign-black.svg" alt="DCMN logo" />
-            </div> */}
-
-            <input type="text" value={formatNumber(screen)} readOnly data-role="screen" />
+            <input type="text" value={formatOutput(screen)} readOnly data-role="screen" />
             <div className="keyboard">
                 <div className="numboard">
                     {'123456789'.split('').map(value => (
@@ -132,4 +127,4 @@ const App = () => {
     );
 };
 
-export default App;
+export default Calc;
