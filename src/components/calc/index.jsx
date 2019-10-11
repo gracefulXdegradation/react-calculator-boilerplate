@@ -68,7 +68,7 @@ const Calc = () => {
     };
 
     const setOperation = (operation) => {
-        if (op && op !== '=') {
+        if (op && op !== '=' && memo !== null) {
             handleEquals();
         }
         setOp(operation);
@@ -125,7 +125,7 @@ const Calc = () => {
         <form>
             <input type="text" value={formatOutput(screen)} readOnly data-role="screen" />
             <div className="keyboard" ref={keyboardRef} onMouseLeave={onKeyboardLeave}>
-                <div className={cn('pad', { 'hidden': padHidden })} ref={padRef}>
+                <div className={cn('pad', { hidden: padHidden })} ref={padRef}>
                     <div />
                 </div>
                 <div className="numboard">
