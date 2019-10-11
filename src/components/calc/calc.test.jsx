@@ -137,6 +137,8 @@ describe('App', () => {
         expect(screen.getDOMNode().value).toEqual('9');
         clickButtons('4+5=', wrapper);
         expect(screen.getDOMNode().value).toEqual('9');
+        clickButtons('.4+.5=', wrapper);
+        expect(screen.getDOMNode().value).toEqual('0.9');
     });
 
     it('handles key press correctly', () => {

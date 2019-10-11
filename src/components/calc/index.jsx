@@ -57,8 +57,10 @@ const Calc = () => {
         if (maxInputReached(screen)) {
             return;
         }
-        if ((op || op === '=') && memo === null) {
-            setMemo(screen);
+        if (op && memo === null) {
+            if (op !== '=') {
+                setMemo(screen);
+            }
             setScreen('0.');
         } else if (!screen.includes('.')) {
             setScreen(`${screen}.`);
